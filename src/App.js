@@ -46,7 +46,7 @@ function App() {
   const [isShow, setIsShow] = useState(false);
   const [isRead, setIsRead] = useState(false);
   const [itWasRead, setItWasRead] = useState(false);
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(en);
 
   const toggleArticle = () => {
     setIsShow(!isShow);
@@ -67,38 +67,31 @@ function App() {
 
   const langChange = (newLang) => {
     setLang(newLang);
+    if (newLang === "en") {
+      setLang(en);
+    } else {
+      setLang(ua);
+    }
   };
 
   return (
     <div className="wrapper">
-      <h1 className="title">
-        {lang === "en" ? "NVIDIA NEWS" : "НОВИНИ NVIDIA "}
-      </h1>
+      <h1 className="title">{lang.firstTitle}</h1>
       <div className="article">
-        <Article show={isShow} text={article} isRead={isRead}>
+        <Article show={isShow} text={lang} isRead={isRead}>
           <div className="article__title">
-            <h2>
-              {lang === "en"
-                ? "NVIDIA Accelerated AI on Azure"
-                : "Прискорений штучний інтелект NVIDIA в Azure"}
-            </h2>
+            <h2>{lang.secondTitle}</h2>
           </div>
         </Article>
         <div className="article__actions">
           <button onClick={markAsRead} className="article__btn">
-            {lang === "en" ? "Mark as read" : "Прочитано"}
+            {lang.btnMarkAsRead}
           </button>
           <button onClick={toggleArticle} className="article__btn">
-            {isShow
-              ? lang === "en"
-                ? "Close"
-                : "Закрити"
-              : lang === "en"
-              ? "Read"
-              : "Читати"}
+            {isShow ? lang.btnClose : lang.btnRead}
           </button>
           <button onClick={markAsUnread} className="article__btn">
-            {lang === "en" ? "Mark as unread" : "Не прочитано"}
+            {lang.btnMarkAsUnread}
           </button>
         </div>
       </div>
