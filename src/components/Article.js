@@ -3,15 +3,12 @@ import ArticleAuthor from "./ArticleAuthor";
 import ArticleBody from "./ArticleBody";
 
 function Article(props) {
-  
-    return (
+  return (
     <>
-    {props.children}
-    <ArticleBody show={props.show} text={props.text} />
-    <ArticleAuthor /> 
+      {props.children}
+      <ArticleBody show={props.show} text={props.text} isRead={props.isRead} />
+      <ArticleAuthor />
     </>
-    );
-  }
-  export default Article;
-
-
+  );
+}
+export default Article;
